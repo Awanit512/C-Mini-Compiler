@@ -132,6 +132,7 @@ type_specifier
 	: VOID
 	| CHAR
 	| INT
+	| FLOAT
 	| struct_specifier
 	;
 struct_specifier
