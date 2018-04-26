@@ -107,18 +107,23 @@ def make_subexpression_dict(list_of_lines) :
 	for line in list_of_lines :
 		tokens = line.split()
 		if len(tokens) == 5 :
+			# print("variables",variables)
 			if tokens[0] in variables and variables[tokens[0]] in expressions :
+				print("here")
+				print(tokens[0], variables[tokens[0]], expressions[variables[tokens[0]]])
 				del expressions[variables[tokens[0]]]
 			rhs = tokens[2] + " " + tokens[3] + " " + tokens[4]
 			if rhs not in expressions :
 				expressions[rhs] = tokens[0]
-				for i in range(2,5) :
-					variables[tokens[i]] = rhs
+				if isid(tokens[2]) :
+					variables[tokens[2]] = rhs
+				if isid(tokens[4]) :
+					variables[tokens[4]] = rhs
 	return expressions
 
 def eliminate_common_subexpressions(list_of_lines) :
 	expressions = make_subexpression_dict(list_of_lines)
-	#print(expressions)
+	print(expressions)
 	lines = len(list_of_lines)
 	new_list_of_lines = list_of_lines[:]
 	for i in range(lines) :
@@ -140,22 +145,18 @@ if __name__ == "__main__" :
 		list_of_lines.append(line)
 	f.close()
 
-	
-	print("".join(eliminate_common_subexpressions(list_of_lines)))
-	quit()
-
 	printicg(list_of_lines, "ICG")
 	without_deadcode = remove_dead_code(list_of_lines)
 	printicg(without_deadcode, "Optimized ICG after removing dead code")
 	print("Eliminated", len(list_of_lines)-len(without_deadcode), "lines of code")
 
-	printicg(list_of_lines, "ICG")
+	printicg(without_deadcode, "ICG")
 	folded_constants = fold_constants(list_of_lines)
 	printicg(folded_constants, "Optimized ICG after constant folding")
 
-	printicg(list_of_lines, "ICG")
-	eliminated_common_subexpressions = eliminate_common_subexpressions(list_of_lines)
-	printicg(eliminate_common_subexpressions, "Optimized ICG after eliminating common subexpressions")
+	# printicg(list_of_lines, "ICG")
+	# eliminated_common_subexpressions = eliminate_common_subexpressions(list_of_lines)
+	# printicg(eliminated_common_subexpressions, "Optimized ICG after eliminating common subexpressions")
 	
 	
 	

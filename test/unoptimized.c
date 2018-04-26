@@ -7,7 +7,7 @@ int main()
 	c = a-6;
 	d = b*0;
 	a = c/1;
-	a = b+0
+	a = b+0;
 	b = 0-c;
 	16+42;
 	e*f*g;
