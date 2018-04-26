@@ -268,6 +268,7 @@ void gen_false_code()
 	{
 		fprintf(outfile, "%s = %s\ngoto %s\n", top(0), pop(), label_pop());
 		fprintf(outfile, "%s :\n", label_pop());
+		label++;
 	}
 	else
 		fprintf(outfile, "%s\ngoto L%d\n", pop(), label-1);
