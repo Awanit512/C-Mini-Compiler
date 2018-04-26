@@ -1,9 +1,12 @@
 import re
 import sys
 icg_file = "output_file.txt"
+
 istemp = lambda s : bool(re.match(r"^t[0-9]*$", s)) 
-isid = lambda s : bool(re.match(r"^[A-Za-z][A-Za-z0-9_]*$", s)) #can be temp also
+isid = lambda s : bool(re.match(r"^[A-Za-z][A-Za-z0-9_]*$", s)) #will match temp also
+
 binary_operators = {"+", "-", "*", "/", "*", "&", "|", "^", ">>", "<<", "==", ">=", "<=", "!=", ">", "<"}
+
 def printicg(list_of_lines, message = "") :
 	print(message.upper())
 	for line in list_of_lines :
@@ -90,6 +93,43 @@ Temporaries that are never assigned to any variable nor used in any expression a
 		return new_list_of_lines
 	return remove_dead_code(new_list_of_lines)
 
+"""
+def wrap_temps(list_of_lines, unique_temps = 100) :
+	temps_for_reuse = set()
+	number_of_lines = len(list_of_lines)
+	for i in range(number_of_lines) :
+		tokens = list_of_lines[i].split()
+		if len(tokens) == 5 and istemp(tokens[4]) : #a temp has been assigned to something else
+"""
+def make_subexpression_dict(list_of_lines) :
+	expressions = {}
+	variables = {}
+	for line in list_of_lines :
+		tokens = line.split()
+		if len(tokens) == 5 :
+			if tokens[0] in variables and variables[tokens[0]] in expressions :
+				del expressions[variables[tokens[0]]]
+			rhs = tokens[2] + " " + tokens[3] + " " + tokens[4]
+			if rhs not in expressions :
+				expressions[rhs] = tokens[0]
+				for i in range(2,5) :
+					variables[tokens[i]] = rhs
+	return expressions
+
+def eliminate_common_subexpressions(list_of_lines) :
+	expressions = make_subexpression_dict(list_of_lines)
+	#print(expressions)
+	lines = len(list_of_lines)
+	new_list_of_lines = list_of_lines[:]
+	for i in range(lines) :
+		tokens = list_of_lines[i].split()
+		if len(tokens) == 5 :
+			rhs = tokens[2] + " " + tokens[3] + " " + tokens[4]
+			if rhs in expressions and expressions[rhs] != tokens[0]:
+				new_list_of_lines[i] = tokens[0] + " " + tokens[1] + " " + expressions[rhs]
+	return new_list_of_lines
+				
+
 if __name__ == "__main__" :
 	if len(sys.argv) == 2 :
 		icg_file = str(sys.argv[1])
@@ -100,6 +140,10 @@ if __name__ == "__main__" :
 		list_of_lines.append(line)
 	f.close()
 
+	
+	print("".join(eliminate_common_subexpressions(list_of_lines)))
+	quit()
+
 	printicg(list_of_lines, "ICG")
 	without_deadcode = remove_dead_code(list_of_lines)
 	printicg(without_deadcode, "Optimized ICG after removing dead code")
@@ -108,6 +152,10 @@ if __name__ == "__main__" :
 	printicg(list_of_lines, "ICG")
 	folded_constants = fold_constants(list_of_lines)
 	printicg(folded_constants, "Optimized ICG after constant folding")
+
+	printicg(list_of_lines, "ICG")
+	eliminated_common_subexpressions = eliminate_common_subexpressions(list_of_lines)
+	printicg(eliminate_common_subexpressions, "Optimized ICG after eliminating common subexpressions")
 	
 	
 	
