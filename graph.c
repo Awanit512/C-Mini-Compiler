@@ -110,8 +110,8 @@ void exNode( nodeType *p,  int c, int l, /* start column and line of node */  in
 }
 
 /* interface for drawing */
-#define lmax 200
-#define cmax 200
+#define lmax 250
+#define cmax 250
 char graph[lmax][cmax]; /* array for ASCII-Graphic */
 int graphNumber = 0;
 

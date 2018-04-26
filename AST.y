@@ -93,28 +93,24 @@ postfix_expression
 											$$ = id(tmp);
 										}
 	| postfix_expression INC_OP			{
-											$$ = opr('=', 2, $1, opr('+', 2, $1, id("1") ) );
+											$$ = opr('=', 2, $1, opr('+', 2, $1, con("1") ) );
 										}
 	| postfix_expression DEC_OP			{
-											$$ = opr('=', 2, $1, opr('-', 2, $1, id("1") ) );										
+											$$ = opr('=', 2, $1, opr('-', 2, $1, con("1") ) );										
 										}
 	| INC_OP primary_expression			{
-											$$ = opr('=', 2, $2, opr('+', 2, $2, id("1") ) );										
+											$$ = opr('=', 2, $2, opr('+', 2, $2, con("1") ) );										
 										}
 	| DEC_OP primary_expression			{
-											$$ = opr('=', 2, $2, opr('-', 2, $2, id("1") ) );										
+											$$ = opr('=', 2, $2, opr('-', 2, $2, con("1") ) );										
 										}
 
 	;
 
 unary_expression
-	: postfix_expression 						{$$ = $1;}
-	| unary_operator unary_expression			{$$ = opr('-', 1, $2);}	
-	;
-
-unary_operator
-	: '+'		{}
-	| '-'		{}
+	: postfix_expression 			{$$ = $1;}
+	| '+' unary_expression			{$$ = opr('+', 1, $2);}
+	| '-' unary_expression			{$$ = opr('+', 1, $2);}	
 	;
 
 multiplicative_expression
@@ -151,13 +147,9 @@ conditional_expression
 
 assignment_expression
 	: conditional_expression					{$$ = $1;}
-	| unary_expression assignment_operator assignment_expression {$$ = opr('=', 2, $1, $3);}
-	;
-
-assignment_operator
-	: '='
-	| ADD_ASSIGN
-	| SUB_ASSIGN
+	| unary_expression '=' assignment_expression {$$ = opr('=', 2, $1, $3);}
+	| unary_expression ADD_ASSIGN assignment_expression {$$ = opr('=', 2, $1, opr('+', 2, $1, $3) );}
+	| unary_expression SUB_ASSIGN assignment_expression {$$ = opr('=', 2, $1, opr('-', 2, $1, $3) );}
 	;
 
 expression
