@@ -188,6 +188,7 @@ type_specifier
 	: VOID
 	| CHAR
 	| INT
+	| FLOAT
 	| struct_specifier				{if_assign = 0;}
 	;
 
