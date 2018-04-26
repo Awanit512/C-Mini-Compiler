@@ -152,7 +152,7 @@ if __name__ == "__main__" :
 	print("Eliminated", len(list_of_lines)-len(without_deadcode), "lines of code")
 
 	printicg(without_deadcode, "ICG")
-	folded_constants = fold_constants(list_of_lines)
+	folded_constants = fold_constants(without_deadcode)
 	printicg(folded_constants, "Optimized ICG after constant folding")
 
 	# printicg(list_of_lines, "ICG")
