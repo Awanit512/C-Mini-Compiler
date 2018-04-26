@@ -136,6 +136,7 @@ def eliminate_common_subexpressions(list_of_lines) :
 				
 
 if __name__ == "__main__" :
+
 	if len(sys.argv) == 2 :
 		icg_file = str(sys.argv[1])
 	
