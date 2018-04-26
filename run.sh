@@ -4,7 +4,7 @@ echo "---------------"
 echo "Supported constructs : For loop, Ternary Operators and Structures"
 yacc -d AST.y
 lex AST.l
-gcc -g y.tab.c lex.yy.c -ll -o AST
+gcc -g y.tab.c lex.yy.c graph.c -ll -o AST
 yacc -d ICG.y
 lex ICG.l
 gcc -g y.tab.c lex.yy.c -ll -o ICG
