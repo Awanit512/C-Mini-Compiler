@@ -34,7 +34,6 @@
 #define YYSTYPE_IS_DECLARED 1
 typedef union
 {
-	int ival;
 	char string[128];
 } YYSTYPE;
 #endif /* !YYSTYPE_IS_DECLARED */
