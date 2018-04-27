@@ -1,3 +1,6 @@
+rm symbol_table.txt
+rm output_file.txt
+rm error.txt
 rm ICG
 rm SymbolTable
 rm AST
