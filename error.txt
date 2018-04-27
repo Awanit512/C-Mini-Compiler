@@ -1,6 +1,0 @@
-Varaible yash.id is not defined
-Varaible yash.age is not defined
-Varaible sood.id is not defined
-Varaible sood.age is not defined
-Varaible yash.can_vote is not defined
-Varaible sood.can_vote is not defined
