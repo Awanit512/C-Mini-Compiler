@@ -3,7 +3,7 @@ echo "MINI C COMPILER"
 echo "---------------"
 echo "Supported constructs : For loop, Ternary Operators and Structures"
 yacc -d symbol_table.y
-lex ICG.l
+lex symbol_table.l
 gcc -g y.tab.c lex.yy.c -ll -o SymbolTable
 yacc -d AST.y
 lex AST.l

@@ -5,13 +5,15 @@
 struct struct_name1 {
 	int member1;
 	float member2;
-};
+}struct_id;
 
 int main()
 {
-	int i,j,k;
+	int i;
+	int j;
+	int k;
 
-	struct struct_name1 struct_id;
+	//struct struct_name1 
 	struct_id.member1 = 18*23;
 
 	for (i=0; i != 12; i++)

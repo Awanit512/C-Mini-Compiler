@@ -1,14 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct person {
+int main()
+{
+	struct person {
 	int id;
 	int age;
 	int can_vote;
 };
-
-int main()
-{
 	
 	struct person yash;
 	struct person sood;
