@@ -1,24 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct person {
+	struct person {
 	int id;
 	int age;
 	int can_vote;
-};
+}var1;
 
+
+	struct person {
+	int id;
+	int age;
+	int can_vote;
+}var2;
 int main()
 {
 	
-	struct person yash;
-	struct person sood;
+	var1.id = 23;
+	var1.age = 312;
 	
-	yash.id = 357;
-	yash.age = 50;
-
-	sood.id = 363;
-	sood.age = 11;
-
-	yash.can_vote = yash.age >= 18 ? 1 : 0;
-	sood.can_vote = sood.age >= 18 ? 1 : 0;	
+	var2.id = 23;
+	var2.age = 312;
 }
