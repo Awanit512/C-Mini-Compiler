@@ -6,22 +6,23 @@ struct person {
 	int id;
 	int age;
 	int can_vote;
-}var1;
+};
 
 
 
-struct person {
-	int id;
-	int age;
-	int can_vote;
-}var2;
-
+struct person yash;
+struct person sood;
 int main()
 {
 
-	var1.id = 23;
-	var1.age = 312;
+	sood.id = 23;
+	sood.age = 312;
 	
-	var2.id = 23;
-	var2.age = 312;
+	yash.id = 213;
+	yash.age = 12;
+	
+	sood.can_vote = sood.age >= 18 ? 1 : 0;
+	yash.can_vote = yash.age >= 18 ? 1 : 0;
+	
+	
 }
