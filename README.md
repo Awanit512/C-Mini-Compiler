@@ -14,7 +14,7 @@ Clone this repository and execute `sh run.sh`. After execution of various phases
 Following output files are generated upon execution of ```run.sh``` :
 
 1. Symbol Table : ```./SymbolTable < filename``` <br>
-Symbol table constains keywords and identifiers, their datatypes and values with some preliminary evaluation of simple expressions. The output of this file will be in ```symbol_table.txt``` and the errors while creating the symbol table are stored in ```errors.txt```.
+Symbol table contains keywords and identifiers, their datatypes and values with some preliminary evaluation of simple expressions. The output of this file will be in ```symbol_table.txt``` and the errors while creating the symbol table are stored in ```errors.txt```.
 The errors handled by the symbol table are
 - Undeclared variables
 - Multiple declarations of a variable within the same scope
