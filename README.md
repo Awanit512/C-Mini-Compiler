@@ -34,4 +34,4 @@ Following code optimizations were performed
 
 ### References
 1. [Grammar for C in Lex and Yacc](https://www.lysator.liu.se/c/ANSI-C-grammar-y.html)
-2. [Tutorial (Lex and Yacc) and code for drawing abstract syntax tree](http://epaperpress.com/lexandyacc/download/LexAndYaccTutorial.pdf)
+2. [Tutorial (Lex and Yacc) and code for drawing abstract syntax tree](https://www.epaperpress.com/lexandyacc/download/LexAndYacc.pdf)
